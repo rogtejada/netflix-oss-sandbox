@@ -1,0 +1,33 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.5.RELEASE'
+    id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.poc.eureka'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+def feignVersion = '10.2.3'
+
+dependencies {
+    compile("org.json:json:20171018")
+    compile group: 'io.github.openfeign', name: 'feign-core', version: "${feignVersion}"
+    compile group: 'io.github.openfeign', name: 'feign-gson', version: "${feignVersion}"
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    
+}
